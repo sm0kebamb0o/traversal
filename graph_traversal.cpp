@@ -2,8 +2,8 @@
 
 #include "structures/graph.hpp"
 
-void bell_ford(Graph& graph, VertexId src,
-               std::unordered_map<VertexId, Weight>& dist) {
+void bell_ford_bypass(Graph& graph, VertexId src,
+                      std::unordered_map<VertexId, Weight>& dist) {
   for (auto& edge : graph.edges_) {
     dist[edge.second.from()] = INF;
     dist[edge.second.to()] = INF;
@@ -24,8 +24,8 @@ void bell_ford(Graph& graph, VertexId src,
   }
 }
 
-void dijkstra(Graph& graph, VertexId src,
-              std::unordered_map<VertexId, Weight>& dist) {
+void dijkstra_bypass(Graph& graph, VertexId src,
+                     std::unordered_map<VertexId, Weight>& dist) {
   using ToCost = std::pair<Weight, VertexId>;
   std::priority_queue<ToCost, std::vector<ToCost>, std::greater<ToCost>> pq;
   Weight cur_cost;

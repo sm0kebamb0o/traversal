@@ -1,8 +1,8 @@
+#include "graph_json_printing.hpp"
+
 #include <sstream>
 #include <string>
 #include <unordered_map>
-
-#include "graph_json_printing.hpp"
 
 namespace printing {
 namespace json {
@@ -14,7 +14,7 @@ std::string print_vertex(const Vertex& vertex, const Graph& graph) {
   if (!edge_ids.empty()) {
     bool is_first_iteration = true;
     for (auto it = edge_ids.cbegin(); it != edge_ids.cend(); ++it) {
-      if (!is_first_iteration){
+      if (!is_first_iteration) {
         json_string << ", ";
       }
       json_string << *it;
@@ -29,8 +29,8 @@ std::string print_vertex(const Vertex& vertex, const Graph& graph) {
 std::string print_edge(const Edge& edge, const Graph& graph) {
   std::stringstream json_string;
   json_string << "\n\t\t{ \"id\": " << edge.id() << ", \"vertex_ids\": ["
-              << edge.from() << ", "
-              << edge.to() << "] }";
+              << edge.from() << ", " << edge.to()
+              << "], \"weight\": " << edge.cost() << " }";
 
   return json_string.str();
 }

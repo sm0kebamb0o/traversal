@@ -40,11 +40,11 @@ class Graph : public iGraph {
 
   void set_min_weight(Weight val) { MinWeight = val; }
 
-  friend void bell_ford(Graph& graph, VertexId src,
-                        std::unordered_map<VertexId, Weight>& dist);
+  friend void bell_ford_bypass(Graph& graph, VertexId src,
+                               std::unordered_map<VertexId, Weight>& dist);
 
-  friend void dijkstra(Graph& graph, VertexId src,
-                       std::unordered_map<VertexId, Weight>& dist);
+  friend void dijkstra_bypass(Graph& graph, VertexId src,
+                              std::unordered_map<VertexId, Weight>& dist);
 
  private:
   VertexId last_vertex_id_ = 0;

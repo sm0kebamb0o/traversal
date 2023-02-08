@@ -15,11 +15,11 @@ LOG = log.txt
 VERT_NUM = 10
 EDGES_NUM = 30
 
-all: $(ALL_SRC)
-	$(CC) $(ALL_SRC) -o $(RES)
+all: $(ALL_OBJ)
+	$(CC) $(ALL_OBJ) -o $(RES)
 
 %.o : %.cpp
-	$(CC) -c $<
+	$(CC) -c -o $@ $<
 
 run : $(RES)
 	./$(RES) $(VERT_NUM) $(EDGES_NUM) 2> $(LOG)
@@ -28,4 +28,4 @@ style:
 	clang-format -i -style=Google $(ALL)
 
 clean:
-	rm -rf $(RES) $(LOG)
+	rm -rf $(RES) $(ALL_OBJ)
