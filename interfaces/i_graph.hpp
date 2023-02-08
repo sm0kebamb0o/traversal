@@ -14,6 +14,4 @@ public:
   virtual void generate_vertices(unsigned vertices_num) = 0;
 
   virtual void print_vertices() const = 0;
-
-  virtual Weight find_cost(EdgeId id) = 0;
 };

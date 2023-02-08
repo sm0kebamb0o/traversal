@@ -2,6 +2,14 @@
 
 #include "structures/graph.hpp"
 
+template <class Key, class Arg>
+std::ostream& operator<<(std::ostream& out, std::unordered_map<Key, Arg>& arg) {
+  for (auto& el : arg) {
+    out << el.first << " " << el.second << "\n";
+  }
+  return out;
+}
+
 int main() {
   Graph graph;
   graph.generate_vertices(10);
@@ -14,10 +22,13 @@ int main() {
 
   std::cout << std::endl;
 
-  std::unordered_map<VertexId, Weight> dist;
-  bell_ford(graph, 0, dist);
+  std::unordered_map<VertexId, Weight> dist_1, dist_2;
+  bell_ford(graph, 0, dist_1);
 
-  for (auto& el : dist) {
-    std::cout << el.first << " " << el.second << "\n";
-  }
+  std::cout << dist_1;
+
+  std::cout << std::endl;
+
+  dijkstra(graph, 0, dist_2);
+  std::cout << dist_2;
 }

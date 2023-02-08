@@ -48,7 +48,7 @@ void Graph::add_edge(VertexId from, VertexId to, Weight cost, EdgeId id) {
   if (id == notPossibleId) id = last_edge_id_++;
   edges_.insert({id, Edge(id, from, to, cost)});
 
-  adjacency_[from] = id;
+  adjacency_[from].push_back(id);
 
   if (last_edge_id_ == notPossibleId) {
     std::cerr << "No more edge id's left!" << std::endl;
@@ -88,5 +88,3 @@ void Graph::print_edges() const {
               << edge.second.cost() << std::endl;
   }
 }
-
-Weight Graph::find_cost(EdgeId id) { return edges_.at(id).cost(); }
