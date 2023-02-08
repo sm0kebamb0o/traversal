@@ -1,4 +1,6 @@
-#include <interfaces/i_edge.hpp>
+#pragma once
+
+#include "../interfaces/i_edge.hpp"
 
 class Edge : public iEdge {
  public:
@@ -12,9 +14,10 @@ class Edge : public iEdge {
   VertexId to() const override { return to_; }
 
   Weight cost() const override { return cost_; }
+
  private:
   EdgeId id_;
   VertexId from_;
   VertexId to_;
-  Weight cost_; 
+  Weight cost_;
 };
