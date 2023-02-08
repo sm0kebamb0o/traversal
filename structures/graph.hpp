@@ -24,11 +24,17 @@ class Graph : public iGraph {
 
   void generate_vertices(unsigned vertices_num) override;
 
-  void print_vertices() const override;
-
   void generate_edges(unsigned edges_num);
 
-  void print_edges() const;
+  const std::vector<EdgeId>& get_connected_edge_ids(VertexId vertex_id) const {
+    return adjacency_.at(vertex_id);
+  }
+
+  const std::unordered_map<EdgeId, Edge>& get_edges() const { return edges_; }
+
+  const std::unordered_map<VertexId, Vertex>& get_vertices() const {
+    return vertices_;
+  }
 
   void set_max_weight(Weight val) { MaxWeight = val; }
 

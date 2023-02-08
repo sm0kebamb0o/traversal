@@ -62,13 +62,6 @@ void Graph::generate_vertices(unsigned vertices_num) {
   }
 }
 
-void Graph::print_vertices() const {
-  for (auto& vertex : vertices_) {
-    std::cout << vertex.first << " ";
-  }
-  std::cout << std::endl;
-}
-
 void Graph::generate_edges(unsigned edges_num) {
   std::random_device rd;
   std::mt19937 gen(rd());
@@ -76,15 +69,6 @@ void Graph::generate_edges(unsigned edges_num) {
   std::uniform_int_distribution<> distrib_cost(MinWeight, MaxWeight);
 
   for (int id = 0; id < edges_num; ++id) {
-    auto first = distrib_vertex(gen), second = distrib_vertex(gen);
-    auto weigh = distrib_cost(gen);
-    add_edge(first, second, weigh, id);
-  }
-}
-
-void Graph::print_edges() const {
-  for (auto& edge : edges_) {
-    std::cout << edge.second.from() << " " << edge.second.to() << " "
-              << edge.second.cost() << std::endl;
+    add_edge(distrib_vertex(gen), distrib_vertex(gen), distrib_cost(gen), id);
   }
 }

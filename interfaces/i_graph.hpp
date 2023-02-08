@@ -12,6 +12,4 @@ public:
                 EdgeId id = notPossibleId) = 0;
 
   virtual void generate_vertices(unsigned vertices_num) = 0;
-
-  virtual void print_vertices() const = 0;
 };

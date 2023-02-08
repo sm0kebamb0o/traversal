@@ -1,6 +1,8 @@
 #include <iostream>
+#include <fstream>
 
 #include "structures/graph.hpp"
+#include "printing/graph_json_printing.hpp"
 
 template <class Key, class Arg>
 std::ostream& operator<<(std::ostream& out, std::unordered_map<Key, Arg>& arg) {
@@ -10,15 +12,17 @@ std::ostream& operator<<(std::ostream& out, std::unordered_map<Key, Arg>& arg) {
   return out;
 }
 
-int main() {
+void write_to_file(const std::string& graph_str, const std::string& file_name) {
+  std::ofstream fout(file_name);
+  fout << graph_str;
+}
+
+int main(int argc, char *argv[]) {
   Graph graph;
-  graph.generate_vertices(10);
-  graph.print_vertices();
+  graph.generate_vertices(atoi(argv[1]));
   std::cout << std::endl;
 
-  graph.generate_edges(24);
-
-  graph.print_edges();
+  graph.generate_edges(atoi(argv[2]));
 
   std::cout << std::endl;
 
@@ -31,4 +35,7 @@ int main() {
 
   dijkstra(graph, 0, dist_2);
   std::cout << dist_2;
+
+  const auto out = printing::json::print_graph(graph);
+  write_to_file(out, "graph.json");
 }
